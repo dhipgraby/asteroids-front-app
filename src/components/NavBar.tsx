@@ -30,6 +30,12 @@ export default function Navbar() {
                     <li className='flex gap-4 items-center'>
                         <Link href="/login" className="btn-primary">Login</Link>
                     </li>
+                    <li className='flex gap-4 items-center'>
+                        <Link href="/signup" className="btn-primary">Signup</Link>
+                    </li>
+                    <li className='flex gap-4 items-center'>
+                        <Link href="/dashboard" className="btn-primary">Dashboard</Link>
+                    </li>
                 </ul>
 
                 <ul className='mobileMenu flex w-full items-center justify-between'>

@@ -49,6 +49,30 @@
   --bg-dark-400: #1e1f22;
 }
 
+.error {
+  color: rgb(227, 106, 106);
+}
+
+.bg-main {
+  background-color: var(--bg-dark)
+}
+
+.bg-main-100 {
+  background-color: var(--bg-dark-100)
+}
+
+.bg-main-200 {
+  background-color: var(--bg-dark-200)
+}
+
+.bg-main-300 {
+  background-color: var(--bg-dark-300)
+}
+
+.bg-main-400 {
+  background-color: var(--bg-dark-400)
+}
+
 .body {
   color: white;
   font-family: Satoshi !important;
