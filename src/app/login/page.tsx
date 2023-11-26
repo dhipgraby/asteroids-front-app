@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
 import UseGuard from "@/hoc/UseGuard";
+import LoginForm from "@/components/Authentication/LoginForm";
 
 const LoginPage = () => {
     return (
-        <div className='mx-auto'>
-            <h1>Login</h1>
+        <div className='m-auto ta-c '>
+
+            <LoginForm />
+
         </div>
     );
 };
