@@ -6,9 +6,7 @@ import LoginForm from "@/components/Authentication/LoginForm";
 const LoginPage = () => {
     return (
         <div className='m-auto ta-c '>
-
             <LoginForm />
-
         </div>
     );
 };

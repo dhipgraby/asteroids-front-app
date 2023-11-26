@@ -1,68 +1,68 @@
-import { PANDA_API } from "./env_variables";
-export const ConversationsUrl = PANDA_API + "/conversations";
-export const ChatUrl = PANDA_API + "/ai/chat";
-export const ChatUrlTest = PANDA_API + "/ai/test";
+import { toast } from "react-toastify";
 
-export async function postCall(url, params) {
-    console.log(url);
+async function handleResponse(response: any, url: string, params: any) {
+    if (!response.ok) {
+        console.log('response', response);
+
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const errorData = await response.json();
+            if (errorData.message && Array.isArray(errorData.message)) {
+                const errorMessage = errorData.message.join(', ');
+                toast.error(errorMessage);
+                return { error: errorMessage };
+            }
+        }
+
+        console.log(`Error in ${url}`, { url, params });
+        toast.error('An error occurred. Please try again.');
+        return false;
+    }
+    return response.json();
+}
+
+export async function postCall(url: string, params: any) {
     const response = await fetch(url, {
         method: "POST",
         headers: getHeaders(),
         body: JSON.stringify(params),
     });
 
-    if (!response.ok) {
-        console.log("error in postCall", { url: url, params: params });
-        return false;
-    }
-    return response.json();
+    return handleResponse(response, url, params);
 }
 
-export async function getCall(url, params = null) {
-
+export async function getCall(url: string, params = null) {
     const response = await fetch(url, {
         method: "GET",
         headers: getHeaders(),
     });
 
-    if (!response.ok) {
-        console.log("error in getCall", { url: url, params: params });
-        return false;
-    }
-    return response.json();
+    return handleResponse(response, url, params);
 }
 
-export async function putCall(url, params) {
+export async function putCall(url: string, params: any) {
     const response = await fetch(url, {
         method: "PUT",
         headers: getHeaders(),
         body: JSON.stringify(params),
     });
 
-    if (!response.ok) {
-        console.log("error in putCall", { url: url, params: params });
-        return false;
-    }
-    return response.json();
+    return handleResponse(response, url, params);
 }
 
-export async function deleteCall(url, params) {
+export async function deleteCall(url: string, params: any) {
     const response = await fetch(url, {
         method: "DELETE",
         headers: getHeaders(),
         body: JSON.stringify(params),
     });
 
-    if (!response.ok) {
-        console.log("error in deleteCall", { url: url, params: params });
-        return false;
-    }
-    return response.json();
+    return handleResponse(response, url, params);
 }
 
 export function getHeaders() {
     return {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem("token")}`
-    }
+    };
 }

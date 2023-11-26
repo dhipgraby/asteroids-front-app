@@ -1,8 +1,6 @@
 import React from 'react';
-import styles from './Login.module.css'
 import { useFormik } from 'formik';
 import { validationSchema } from '@/validation/login';
-import { toast } from 'react-toastify'
 import { userStore } from '@/stores/user.store';
 
 const LoginForm = () => {
@@ -21,21 +19,12 @@ const LoginForm = () => {
     }
   });
 
-  const submitlogout = () => {
-    try {
-      // dispatch(clearState())
-      // dispatch(logout())
-    } catch (error) {
-      toast.warn(`Error loggin out. Try again or contact support`);
-    }
-  }
-
   return (
     <div className="bg-main-100 w-96 rounded-lg overflow-hidden pt-4 mt-20">
       <h4 className='text-white text-2xl mb-5'>Login</h4>
       <div className='p-5 bg-main'>
         {(!user.isLoggedin) ? (
-          <form id="loginForm" className={`${styles.form}`} onSubmit={formik.handleSubmit}>
+          <form id="loginForm" onSubmit={formik.handleSubmit}>
             <div>
               <input
                 type="text"
@@ -71,7 +60,7 @@ const LoginForm = () => {
         ) : (
           <>
             <h3 className='greyTxt text-xl'>
-              Welcome back {user.data.username}
+              Welcome back {user.data.name}
             </h3>
             <button className='btn-primary w-full my-2 mt-10' onClick={() => user.logout()}>Logout</button>
           </>
