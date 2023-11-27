@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { addFavorite } from '@/helpers/favoritesApi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 interface Asteroid {
     id: number;
@@ -22,64 +24,63 @@ const AsteroidsTable: React.FC<AsteroidsState> = ({ asteroids }) => {
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const selectedAsteroids = asteroids.slice(startIndex, startIndex + PAGE_SIZE);
 
-    const addToFavorites = async ( id: number ) => {
+    const addToFavorites = async (id: number) => {
         const res = await addFavorite(id);
-        console.log("Added to favorites:", id, res);
         return res;
     };
 
 
     return (
         <div className='container mx-auto'>
-            <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden">
-                    <thead className="bg-gray-100 dark:bg-gray-800">
+            <div className="overflow-x-auto border-slate-600 border-2 rounded-lg">
+                <table className="bg-main-300 asteroidTable">
+                    <thead className="bg-main p-3 dark:bg-gray-800">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diameter</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Discovered</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Comment</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Diameter</th>
+                            <th>Discovered</th>
+                            <th>Comment</th>
                             <th className="px-6 py-3"></th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                    <tbody className='bg-main'>
                         {selectedAsteroids.map((asteroid) => (
                             <tr key={asteroid.id}>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.id}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.name}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.diameter}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{new Date(asteroid.discovered).toLocaleDateString()}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.comment}</td>
+                                <td>{asteroid.id}</td>
+                                <td>{asteroid.name}</td>
+                                <td>{asteroid.diameter}</td>
+                                <td>{new Date(asteroid.discovered).toLocaleDateString()}</td>
+                                <td>{asteroid.comment}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <button
                                         onClick={() => addToFavorites(asteroid.id)}
-                                        className="inline-flex items-center px-4 py-2 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className="btn-primary"
                                     >
-                                        Add to Favorites
+                                        <FontAwesomeIcon icon={faHeart} className='text-red-400' />
                                     </button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <div className="flex justify-between items-center my-4">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </button>
-                    <span>Page {currentPage} of {totalPages}</span>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                    >
-                        Next
-                    </button>
-                </div>
+            </div>
+            <div className="flex justify-between items-center my-4">
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+                <span>Page {currentPage} of {totalPages}</span>
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
             </div>
         </div>
     );

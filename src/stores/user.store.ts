@@ -32,7 +32,6 @@ export const userStore = create<UserState & Actions>((set) => ({
 
     login: async (email: string, password: string) => {
         try {
-            console.log("login:", email);
             const result = await handleLogin(email, password);
 
             if (result.user && result.token) {
@@ -48,9 +47,7 @@ export const userStore = create<UserState & Actions>((set) => ({
     },
     signup: async (username: string, email: string, password: string, callback: (bool: boolean) => void) => {
         try {
-            console.log("signup:", email);
             const result = await handleSignup(username, email, password);
-            console.log("signup result:", result);
             if (result.status === 200) {
                 callback(true)
                 toast.success('Signup successfully, go to login')

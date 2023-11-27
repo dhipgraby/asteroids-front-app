@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 
 async function handleResponse(response: any, url: string, params: any) {
     if (!response.ok) {
-        console.log('response', response);
 
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {

@@ -10,28 +10,28 @@ interface Asteroid {
 }
 
 interface FavoritesTableProps {
-    favorites: Asteroid[];
+  favorites: Asteroid[];
 
 }
 
 const FavoritesTable: React.FC<FavoritesTableProps> = ({ favorites }) => {
-    
-    const handleRemoveFromFavorites = async (id: number) => {
-            const res = await removeFavorite(id);
-            console.log(`Removed the id: ${id}, from your favorites.`);
-            return res;
-    } 
 
-    return (
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden">
-          <thead className="bg-gray-100 dark:bg-gray-800">
-            <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Diameter</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Discovered</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Comment</th>
+  const handleRemoveFromFavorites = async (id: number) => {
+    const res = await removeFavorite(id);
+    console.log(`Removed the id: ${id}, from your favorites.`);
+    return res;
+  }
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden">
+        <thead className="bg-gray-100 dark:bg-gray-800">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Diameter</th>
+            <th>Discovered</th>
+            <th>Comment</th>
             <th className="px-6 py-3"></th>
           </tr>
         </thead>

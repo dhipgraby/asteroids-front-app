@@ -18,8 +18,7 @@ export const handleSignup = async (username: string, email: string, password: st
     if (data.status == 200) {
 
         return data
-    } else {
-        console.log("data", data);
+    } else {        
         if (data.message) throw Error(data.message)
         throw Error("error creating account")
     }

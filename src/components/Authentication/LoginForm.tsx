@@ -13,8 +13,7 @@ const LoginForm = () => {
       password: ''
     },
     validationSchema: validationSchema,
-    onSubmit: async (values: any) => {
-      console.log('values', values);
+    onSubmit: async (values: any) => {      
       await user.login(values.identifier, values.password)
     }
   });

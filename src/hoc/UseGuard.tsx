@@ -5,9 +5,10 @@ import { userStore } from '@/stores/user.store';
 const UseGuard = (WrappedComponent: React.ComponentType, requireAuth: boolean = true) => {
     const AuthGuard: React.FC = (props) => {
         const router = useRouter();
-        const isLoggedIn = userStore((state: any) => state.isLoggedIn)
+        const isLoggedIn = userStore((state: any) => state.isLoggedin)
 
         useEffect(() => {
+
             if (requireAuth && !isLoggedIn) {
                 router.push('/login');
             } else if (!requireAuth && isLoggedIn) {

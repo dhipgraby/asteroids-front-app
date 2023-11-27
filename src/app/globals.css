@@ -137,7 +137,7 @@ p {
   margin-top: 10px;
   padding: 10px;
   max-width: 90%;
-  border-radius: 40px;
+  border-radius: 10px;
   background-color: var(--bg-dark-100) !important;
   border: solid 3px var(--bg-dark) !important;
 }
@@ -311,6 +311,34 @@ nav ul {
 
 #reader__scan_region {
   text-align: -webkit-center !important;
+}
+
+.asteroidTable {
+  overflow: hidden;
+  border-radius: 10px !important;  
+}
+
+.asteroidTable tr {
+  padding: 10px;
+}
+
+.asteroidTable tr:hover {
+  background-color: var(--bg-dark-300);
+}
+
+.asteroidTable thead {
+  border-radius: 8px;
+}
+
+.asteroidTable thead th {
+  padding: 10px;
+  background-color: var(--bg-dark-300);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.asteroidTable td {
+  padding: 15px;
 }
 
 /* Safari */

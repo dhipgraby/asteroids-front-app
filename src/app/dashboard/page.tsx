@@ -17,41 +17,34 @@ interface Asteroid {
 
 const DashboardPage = () => {
     const [asteroids, setAsteroids] = useState<Asteroid[]>([]);
-    const [favorites, setFavorites ] = useState<Asteroid[]>([]);
+    const [favorites, setFavorites] = useState<Asteroid[]>([]);
 
     useEffect(() => {
         async function getAsteroids() {
             const result = await getAll()
-            console.log('asteroids result', result);
             setAsteroids(result);
         }
         getAsteroids()
-    },[setAsteroids])
+    }, [setAsteroids])
 
     useEffect(() => {
         async function getFavorites() {
-         const result = await getAllFavorites()
-          console.log('favorites result', result);
-          setFavorites(result);
+            const result = await getAllFavorites()
+            setFavorites(result);
         }
         getFavorites()
-    },[setFavorites])
+    }, [setFavorites])
 
     return (
-        <div className='mx-auto max-w-4xl p-4'>
-        <h1 className='text-2xl font-bold mb-4'>Dashboard</h1>
-        <div className='flex flex-col md:flex-row gap-4 justify-center'>
-          <div className='flex-1 p-4 rounded max-w-fit p-6'>
-            <AsteroidsTable asteroids={ asteroids }/>
-          </div>
-          <div className='flex-1 p-4 rounded'>
-            <FavoritesTable 
-              favorites={ favorites }
-            /> 
-          </div>
+        <div className='mx-auto p-4 ta-c' >
+            <h1 className='text-2xl font-bold mb-4'>Dashboard</h1>
+            <div className='flex flex-col md:flex-row gap-4 justify-center'>
+                <div className='flex-1 p-4 rounded max-w-fit p-6'>
+                    <AsteroidsTable asteroids={asteroids} />
+                </div>
+            </div>
         </div>
-      </div>
     );
 };
 
-export default DashboardPage;
+export default UseGuard(DashboardPage, true);
