@@ -13,5 +13,5 @@ export const validationSchema = Yup.object().shape({
         .min(8, 'Password should be at least 8 characters long.')
         .max(25, 'Password should not exceed 25 characters.'),
     repeatPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match.')
+        .oneOf([Yup.ref('password')], 'Passwords must match.')
 });
