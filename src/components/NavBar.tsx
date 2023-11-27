@@ -42,7 +42,7 @@ export default function Navbar() {
                         </>
                     ) :
                         <>
-                           
+
                             <li className='flex gap-4 items-center'>
                                 <Link href="/dashboard" className="btn-primary">Explore</Link>
                             </li>
@@ -90,7 +90,7 @@ export default function Navbar() {
                 <>
                     <ul className={`${showMenu ? "" : "hideMenu"} drowdown mobileMenu sticky z-10 flex-col`}>
                         <li className='flex gap-4 items-center'>
-                            <Link href="/signup" className="my-2 text-red-300"> Favorites <FontAwesomeIcon icon={faHeart} /></Link>
+                            <Link href="/favorites" className="my-2 text-red-300"> Favorites <FontAwesomeIcon icon={faHeart} /></Link>
                         </li>
                         <li className='flex gap-4 items-center'>
                             <Link href="/dashboard" className="my-2 ">Dashboard</Link>
