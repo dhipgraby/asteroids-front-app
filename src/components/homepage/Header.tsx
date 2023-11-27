@@ -13,7 +13,7 @@ export default function Header() {
           Welcome to AstroAurora
         </h1>
         <h2 className="mb-4 mt-4">
-          <span className="text-main">Your Gateway to Health Innovation!</span>
+          <span className="text-main">Explores asteroids close to our solar system!</span>
         </h2>
 
         <Link
