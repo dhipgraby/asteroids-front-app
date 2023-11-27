@@ -3,9 +3,10 @@ import { asteroidsStore } from "@/stores/asteroids.store";
 
 const useAsteroids = () => {
 
-    const fetchAsteroids = asteroidsStore((state) => state.fetchAsteroids)
+    const useStore = asteroidsStore((state) => state)
     useEffect(() => {
-        fetchAsteroids()
+        useStore.fetchAsteroids()
+        useStore.fetchUserAsteroids()
     }, [])
 }
 

@@ -6,7 +6,7 @@ export async function addFavorite(id: number) {
 }
 
 export async function removeFavorite(id: number) {
-    return await deleteCall(`${USER_API}favorites`, { id });
+    return await deleteCall(`${USER_API}favorites/${id}`, {});
 }
 
 export async function getAll() {

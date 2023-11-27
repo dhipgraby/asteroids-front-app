@@ -4,4 +4,5 @@ export interface Asteroid {
     diameter: string;
     discovered: string;
     comment: string;
+    favorite: boolean;
 }

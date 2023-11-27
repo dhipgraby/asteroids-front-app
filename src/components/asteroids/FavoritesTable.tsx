@@ -1,68 +1,58 @@
-import React from 'react';
-import { removeFavorite } from '../../helpers/favoritesApi'
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { asteroidsStore } from '@/stores/asteroids.store';
+import PaginationButtons from './PaginationButtons';
+import usePagination from '@/hooks/usePagination';
+import TableBody from './TableBody';
 
-interface Asteroid {
-  id: number;
-  name: string;
-  diameter: string;
-  discovered: string;
-  comment: string;
-}
+const PAGE_SIZE = 8;
 
-interface FavoritesTableProps {
-  favorites: Asteroid[];
+const FavoritesTable: React.FC = () => {
 
-}
+  const [isLoading, setIsLoading] = useState(false)
+  const asteroidsState = asteroidsStore((state) => state)
+  const asteroids = asteroidsState.asteroids
+  const addToFavorites = asteroidsState.addToFavorites
+  const removeFavorite = asteroidsState.removeFavorite
+  const userFavorites = asteroidsState.userFavorites
 
-const FavoritesTable: React.FC<FavoritesTableProps> = ({ favorites }) => {
+  const {
+    selectedAsteroids,
+    setCurrentPage,
+    currentPage,
+    totalPages
+  } = usePagination(userFavorites, PAGE_SIZE)
 
-  const handleRemoveFromFavorites = async (id: number) => {
-    const res = await removeFavorite(id);
-    console.log(`Removed the id: ${id}, from your favorites.`);
-    return res;
+  function toggleFavorite(id: number, isFavorite: boolean) {
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+    return isFavorite ? removeFavorite(id) : addToFavorites(id)
   }
 
   return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden">
-        <thead className="bg-gray-100 dark:bg-gray-800">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Diameter</th>
-            <th>Discovered</th>
-            <th>Comment</th>
-            <th className="px-6 py-3"></th>
-          </tr>
-        </thead>
-        <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
-          {favorites.length > 0 ? (
-            favorites.map((asteroid, index) => (
-              <tr key={asteroid.id}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.id}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.diameter}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{new Date(asteroid.discovered).toLocaleDateString()}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{asteroid.comment}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <button
-                    onClick={() => (handleRemoveFromFavorites(index))}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                  >
-                    Remove from Favorites
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={6} className="text-center py-4">
-                No favorites added yet.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+    <div className='container mx-auto'>
+      <div className='ta-l mb-4 flex'>
+        <p>
+          Total favorites: {userFavorites.length} <FontAwesomeIcon icon={faHeart} className={'text-red-400 ml-2'} />
+        </p>
+      </div>
+      <TableBody
+        selectedAsteroids={selectedAsteroids}
+        isLoading={isLoading}
+        toggleFavorite={toggleFavorite}
+
+      />
+      {asteroids.length > 0 &&
+        <PaginationButtons
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+      }
+
     </div>
   );
 };
