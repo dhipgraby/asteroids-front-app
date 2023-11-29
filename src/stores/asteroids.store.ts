@@ -10,8 +10,8 @@ interface AsteroidsState {
 }
 
 type Actions = {
-    fetchAsteroids: () => void,
-    fetchUserAsteroids: () => void
+    fetchAsteroids: () => Promise<any>,
+    fetchUserAsteroids: () => Promise<any>
     addToFavorites: (id: number) => void
     removeFavorite: (id: number) => void
 }
@@ -24,10 +24,12 @@ const initialState: AsteroidsState = {
 export const asteroidsStore = create<AsteroidsState & Actions>((set, get) => ({
     ...initialState,
     fetchAsteroids: async () => {
+        set({ asteroids: [] })
         await handleFetchAsteroids(set, get)
     },
 
     fetchUserAsteroids: async () => {
+        set({ userFavorites: [] })
         try {
             const result = await getFavorites()
 

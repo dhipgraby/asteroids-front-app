@@ -6,8 +6,8 @@ export async function signupUser(name: string, email: string, password: string) 
     return await postCall(`${AUTH_API}auth/signup`, params);
 }
 
-export async function loginUser(email: string, password: string) {
-    const params = { email, password };
+export async function loginUser(identifyer: string, password: string) {
+    const params = { identifyer, password };
     return await postCall(`${AUTH_API}auth/login`, params);
 }
 

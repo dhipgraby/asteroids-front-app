@@ -34,32 +34,39 @@ const AsteroidsTable: React.FC = () => {
     }
 
     return (
-        <div className='container mx-auto'>
-            <div className='ta-l mb-4 flex'>
-                <div className='w-1/2'>
-                    <p>
-                        Results found: {asteroids.length}
-                    </p>
+        <div className='container mx-auto flex'>
+            <div className='w-1/2'>
+                <div className='ta-l mb-4 flex'>
+                    <div className='w-1/2'>
+                        <p>
+                            Results found: {asteroids.length}
+                        </p>
+                    </div>
+                    <div className='w-1/2 ta-r'>
+                        <p>
+                            Total favorites: {userFavorites.length} <FontAwesomeIcon icon={faHeart} className={'text-red-400 ml-2'} />
+                        </p>
+                    </div>
                 </div>
-                <div className='w-1/2 ta-r'>
-                    <p>
-                        Total favorites: {userFavorites.length} <FontAwesomeIcon icon={faHeart} className={'text-red-400 ml-2'} />
-                    </p>
-                </div>
-            </div>
-            <TableBody
-                selectedAsteroids={selectedAsteroids}
-                isLoading={isLoading}
-                toggleFavorite={toggleFavorite}
+                <TableBody
+                    selectedAsteroids={selectedAsteroids}
+                    isLoading={isLoading}
+                    toggleFavorite={toggleFavorite}
 
-            />
-            {asteroids.length > 0 &&
-                <PaginationButtons
-                    setCurrentPage={setCurrentPage}
-                    currentPage={currentPage}
-                    totalPages={totalPages}
                 />
-            }
+
+                {asteroids.length > 0 &&
+                    <PaginationButtons
+                        setCurrentPage={setCurrentPage}
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                    />
+                }
+            </div>
+            <div className='w-1/2'>
+
+            </div>
+
 
         </div>
     );

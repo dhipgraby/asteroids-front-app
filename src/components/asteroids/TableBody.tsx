@@ -23,9 +23,9 @@ export default function TableBody({
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Diameter</th>
+                            {/* <th>Diameter</th> */}
                             <th>Discovered</th>
-                            <th>Comment</th>
+                            {/* <th>Comment</th> */}
                             <th className="px-6 py-3"></th>
                         </tr>
                     </thead>
@@ -34,9 +34,9 @@ export default function TableBody({
                             <tr key={asteroid.id}>
                                 <td>{asteroid.id}</td>
                                 <td>{asteroid.name}</td>
-                                <td>{asteroid.diameter}</td>
+                                {/* <td>{asteroid.diameter}</td> */}
                                 <td>{new Date(asteroid.discovered).toLocaleDateString()}</td>
-                                <td>{asteroid.comment}</td>
+                                {/* <td>{asteroid.comment}</td> */}
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <button
                                         disabled={isLoading}

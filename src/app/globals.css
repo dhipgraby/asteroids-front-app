@@ -341,23 +341,19 @@ nav ul {
   padding: 15px;
 }
 
-/* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
 
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+table {
+  width: 100%;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
+tbody td:first-child::after {
+  content: "🚀";
+}
 
-  100% {
-    transform: rotate(360deg);
-  }
+tbody tr:hover td:first-child:after {
+  display: inline-block;
+  left: -0px;
+  top: -15px;
+  transition: all 0.2s ease-in-out;
+  animation: liftoff 5.5s ease-in 0.3s 1 normal forwards;
 }

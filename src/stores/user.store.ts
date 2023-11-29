@@ -30,9 +30,9 @@ const initialState: UserState = {
 export const userStore = create<UserState & Actions>((set) => ({
     ...initialState,
 
-    login: async (email: string, password: string) => {
+    login: async (identifyer: string, password: string) => {
         try {
-            const result = await handleLogin(email, password);
+            const result = await handleLogin(identifyer, password);
 
             if (result.user && result.token) {
                 set(() => ({ isLoggedin: true, data: result.user }));
@@ -77,6 +77,7 @@ export const userStore = create<UserState & Actions>((set) => ({
         try {
             const user = await handleRegenSession();
             if (user.status === 200 && user.email) {
+
                 set(() => ({
                     isLoggedin: true,
                     data: { name: user.name, email: user.email }

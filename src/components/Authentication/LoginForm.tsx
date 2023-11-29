@@ -13,7 +13,7 @@ const LoginForm = () => {
       password: ''
     },
     validationSchema: validationSchema,
-    onSubmit: async (values: any) => {      
+    onSubmit: async (values: any) => {
       await user.login(values.identifier, values.password)
     }
   });
@@ -27,7 +27,7 @@ const LoginForm = () => {
             <div>
               <input
                 type="text"
-                placeholder="Email"
+                placeholder="Email or username"
                 className="form-control my-2 px-2 py-2 rounded-md w-full bg-main-400"
                 value={formik.values.identifier}
                 onChange={formik.handleChange}

@@ -1,7 +1,7 @@
 import { loginUser, signupUser, checkLoggedIn } from '../helpers/authApi';
 
-export const handleLogin = async (email: string, password: string) => {
-    const data = await loginUser(email, password)
+export const handleLogin = async (identifyer: string, password: string) => {
+    const data = await loginUser(identifyer, password)
 
     if (data.user && data.token) {
         return {

@@ -1,15 +1,12 @@
 "use client";
 import React from "react";
 import UseGuard from "@/hoc/UseGuard";
-import useAsteroids from "@/hooks/useAsteroids";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import FavoritesTable from "@/components/asteroids/FavoritesTable";
 
 
 const DashboardPage = () => {
-
-    useAsteroids()
 
     return (
         <div className='mx-auto p-4 ta-c' >

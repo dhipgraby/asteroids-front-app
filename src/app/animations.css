@@ -261,6 +261,44 @@
     background-color: royalblue;
 }
 
+
+/* animation  */
+@keyframes liftoff {
+    0% {
+        transform: rotate(0deg) translate(0px, 0px);
+    }
+
+    12% {
+        transform: rotate(45deg) translate(0px, -20px);
+    }
+
+    35%,
+    100% {
+        transform: translate(75vw, 0px);
+    }
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);
