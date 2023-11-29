@@ -6,12 +6,14 @@ interface TableProps {
     selectedAsteroids: Asteroid[];
     isLoading: boolean;
     toggleFavorite: (id: number, favorite: boolean) => void
+    setSelectedAsteroid: (asteroid: Asteroid) => void
 }
 
 export default function TableBody({
     selectedAsteroids,
     isLoading,
-    toggleFavorite
+    toggleFavorite,
+    setSelectedAsteroid
 }: TableProps) {
 
     return (
@@ -31,7 +33,7 @@ export default function TableBody({
                     </thead>
                     <tbody className='bg-main'>
                         {selectedAsteroids.map((asteroid: any) => (
-                            <tr key={asteroid.id}>
+                            <tr className="cursor-pointer" key={asteroid.id} onClick={() => setSelectedAsteroid(asteroid)}>
                                 <td>{asteroid.id}</td>
                                 <td>{asteroid.name}</td>
                                 {/* <td>{asteroid.diameter}</td> */}

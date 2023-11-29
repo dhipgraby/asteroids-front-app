@@ -256,7 +256,7 @@ nav ul {
 
 .swing {
   transform-origin: top center;
-  animation: swing 2s infinite;
+  animation: swing 2.5s infinite;
 }
 
 .balancing {
@@ -315,7 +315,7 @@ nav ul {
 
 .asteroidTable {
   overflow: hidden;
-  border-radius: 10px !important;  
+  border-radius: 10px !important;
 }
 
 .asteroidTable tr {
@@ -355,5 +355,5 @@ tbody tr:hover td:first-child:after {
   left: -0px;
   top: -15px;
   transition: all 0.2s ease-in-out;
-  animation: liftoff 5.5s ease-in 0.3s 1 normal forwards;
+  animation: liftoff 4s ease-in 0.3s 1 normal forwards;
 }
